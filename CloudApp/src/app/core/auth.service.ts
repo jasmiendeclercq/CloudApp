@@ -23,7 +23,7 @@ export class AuthService {
       })
     })
   }
-
+  //gaan we niet gebruiken
   doTwitterLogin(){
     return new Promise<any>((resolve, reject) => {
       let provider = new firebase.auth.TwitterAuthProvider();
@@ -53,7 +53,7 @@ export class AuthService {
       })
     })
   }
-
+    //gaan we niet gebruiken
   doRegister(value){
     return new Promise<any>((resolve, reject) => {
       firebase.auth().createUserWithEmailAndPassword(value.email, value.password)
