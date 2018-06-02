@@ -3,8 +3,8 @@ import { UserService } from '../core/user.service';
 import { AuthService } from '../core/auth.service';
 import { ActivatedRoute } from '@angular/router';
 import { Location } from '@angular/common';
-//import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { FirebaseUserModel } from '../core/user.model';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 
 @Component({
   selector: 'app-user',
@@ -13,31 +13,42 @@ import { FirebaseUserModel } from '../core/user.model';
 })
 export class UserComponent implements OnInit {
 
+  name:string='';
   user: FirebaseUserModel = new FirebaseUserModel();
-  //profileForm: FormGroup;
 
   constructor(
     public userService: UserService,
     public authService: AuthService,
     private route: ActivatedRoute,
     private location : Location,
-   // private fb: FormBuilder
+    private _http: HttpClient
   ) { }
+
+  onNameKeyUp(event:any){
+    this.name = event.target.value;
+  }
+
+  getCharacters(){
+    //problemen met cors zie website: https://github.com/Rob--W/cors-anywhere
+    var cors_api_url = 'https://cors-anywhere.herokuapp.com/';
+    this._http.get("https://cors-anywhere.herokuapp.com/https://anapioficeandfire.com/api/characters/583")
+    //this._http.get("https://anapioficeandfire.com/api/characters/?name=${this.name}")
+    .subscribe(
+      (data:any[]) =>{
+        console.log(data);
+      }
+    )
+
+  }
 
   ngOnInit(): void {
     this.route.data.subscribe(routeData => {
       let data = routeData['data'];
       if (data) {
         this.user = data;
-       // this.createForm(this.user.name);
       }
     })
   }
-  /* createForm(name) {
-    this.profileForm = this.fb.group({
-      name: [name, Validators.required ]
-    });
-  } */
 
   save(value){
     this.userService.updateCurrentUser(value)
@@ -54,4 +65,5 @@ export class UserComponent implements OnInit {
       console.log("Logout error", error);
     });
   }
+
 }

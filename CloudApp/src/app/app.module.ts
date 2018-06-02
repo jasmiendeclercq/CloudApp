@@ -13,6 +13,8 @@ import { UserService } from './core/user.service';
 import { rootRouterConfig } from './app.routes';
 import { RouterModule } from '@angular/router';
 import { UserResolver } from './user/user.resolver';
+import {HttpClientModule} from '@angular/common/http';
+
 
 
 @NgModule({
@@ -23,7 +25,7 @@ import { UserResolver } from './user/user.resolver';
   ],
   imports: [
     BrowserModule,
-   // ReactiveFormsModule,
+    HttpClientModule,
     RouterModule.forRoot(rootRouterConfig, { useHash: false }),
     AngularFireModule.initializeApp(environment.firebase),
     AngularFirestoreModule, // imports firebase/firestore, only needed for database features
