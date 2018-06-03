@@ -9,16 +9,14 @@
       <li>
         <ol class="type">
           <li><a (click)="showHide = !showHide" (click)="getAllBooks()">Books</a></li>
-          <li><a (click)="getAllCharacters()">Characters</a></li>
-          <li><a (click)="getAllHouses()">Houses</a></li>
+          <li><a (click)="showHideChar = !showHideChar" (click)="getAllCharacters()">Characters</a></li>
+          <li><a (click)="showHideHouses = !showHideHouses"(click)="getAllHouses()">Houses</a></li>
         </ol>
       </li>
     </ul>
     <div class="clearfix"></div>
   </div>
 </div> 
-
-
 <div class="container">
     <div class="row">
       <div class="col">
@@ -32,7 +30,7 @@
 
 <br>
 
-<ul *ngIf="showHideSearch" class="list-group">
+<ul *ngIf="showHideSearch" class="list-groupSearch">
     <li class="list-group-item">Name: {{name}}</li>
     <li class="list-group-item">Gender: {{gender}}</li>
     <li class="list-group-item">Culture: {{culture}}</li>
@@ -42,12 +40,12 @@
     <li class="list-group-item">Aliases: {{aliases}}</li>
     <li class="list-group-item">Tv Series: {{tvSeries}}</li>
     <li class="list-group-item">Played by: {{playedBy}}</li>
-  </ul>
+</ul>
 
  <div *ngIf="showHide" class="container">
     <div class="card">
         <div class="card-body">
-            <h4 class="card-title">{{resourse}}</h4>
+            <h4 class="card-title">Books</h4>
             <table class="table table-stripped">
                 <tbody>
                     <tr *ngFor="let book of books">
@@ -56,17 +54,68 @@
                         <td>{{book.released}}</td>
                         <td>{{book.numberOfPages}}</td>
                         <td>{{book.mediaType}}</td>
+                        <td>{{book.publisher}}</td>
                     </tr>
                 </tbody>
             </table>
         </div>
     </div>
  </div>
+ <div *ngIf="showHideChar" class="container">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Characters</h4>
+                    <table class="table table-stripped">
+                        <tbody>
+                            <tr *ngFor="let character of characters">
+                                <td>{{character.name}}</td>
+                                <td>{{character.gender}}</td>
+                                <td>{{character.culture}}</td>
+                                <td>{{character.born}}</td>
+                                <td>{{character.died}}</td>
+                                <td>{{character.titles}}</td>
+                                <td>{{character.playedBy}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                  <hr>
+                    <ul nav nav-pills>
+                        <li class="nav-item">
+                            <a class="nav-link-active" (click)="setCharacterPageBack()">Vorige </a>
+                            <a class="nav-link-active" #volgende (click)="setCharacterPageFurther()">Volgende </a>
+                        </li>
+                    </ul> 
+                </div>
+            </div>
+    </div>
+    <div *ngIf="showHideHouses" class="container">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Houses</h4>
+                    <table class="table table-stripped">
+                        <tbody>
+                            <tr *ngFor="let house of houses">
+                                <td>{{house.name}}</td>
+                                <td>{{house.region}}</td>
+                                <td>{{house.words}}</td>
+                                <td>{{house.titles}}</td>
+                                <td>{{house.seats}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <hr>
+                    <ul nav nav-pills>
+                        <li class="nav-item" *ngFor="let p of pagesHouses; let i=index">
+                            <a class="nav-link-active" href="">{{i}}</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+    </div>
 
+  <a type="submit" class="log_out2" (click)="logout()" >Log out</a>
 
-
-
-
+  
  <!--  <ul *ngIf="pager.pages && pager.pages.length" class="pagination">
      <li [ngClass]="{disabled:pager.currentPage === 1}">
          <a (click)="setPage(1)">First</a>
@@ -84,8 +133,6 @@
          <a (click)="setPage(pager.totalPages)">Last</a>
      </li>
  </ul> -->
-
-  <a type="submit" class="log_out2" (click)="logout()" >Log out</a>
 
 
   

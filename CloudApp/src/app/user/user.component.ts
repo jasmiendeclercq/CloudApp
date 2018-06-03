@@ -33,8 +33,13 @@ export class UserComponent implements OnInit {
   books:Array<any>;
   characters:Array<any>;
   houses:Array<any>;
-  private page:number=0;
-  pages:Array<number>;
+  private pageBooks:number=0;
+  private pageChars:number=0;
+  private pageHouse:number=0;
+  pagesBooks:Array<number>;
+  pagesChars:Array<number>;
+  pagesHouses:Array<number>;
+
 
   constructor(
     public userService: UserService,
@@ -48,6 +53,15 @@ export class UserComponent implements OnInit {
       console.log(params);
     })
    }
+   
+  setCharacterPageFurther(){
+    this.pageChars=this.pageChars+1;
+    this.getAllCharacters(this.pageChars);
+  }
+  setCharacterPageBack(){
+    this.pageChars=this.pageChars-1;
+    this.getAllCharacters(this.pageChars);
+  }
 
   onNameKeyUp(event:any){
     this.name = event.target.value;
@@ -77,36 +91,36 @@ export class UserComponent implements OnInit {
     )
   }
 
-  getAllBooks(page:number){
+  getAllBooks(pageBooks:number){
     this.resourse="Books"
-    this._http.get(this.ROOT_URL+'/books?page='+page)
+    this._http.get(this.ROOT_URL+'/books?page='+pageBooks)
     .subscribe(
       (data:any[]) =>{
        console.log(data);
        this.books=data;
-       this.pages=new Array(data['totalPages']);
-      }
-      )
+      })
   }
-  getAllCharacters(page:number){
+  getAllCharacters(pageChars:number){
     this.resourse="Characters"
-    this._http.get(this.ROOT_URL+'/characters?page='+page)
+    this._http.get(this.ROOT_URL+'/characters?page='+this.pageChars)
     .subscribe(
       (data:any[]) =>{
         console.log(data);
         this.characters=data;
-        this.pages=new Array(data['totalPages']);
-      }
-      )
+      })
   }
-  getAllHouses(page:number){
+  private newMethod() {
+    return this;
+  }
+
+  getAllHouses(pageHouse:number){
     this.resourse="Houses"
-    this._http.get(this.ROOT_URL+'/houses?page='+page)
+    this._http.get(this.ROOT_URL+'/houses?page='+pageHouse)
     .subscribe(
       (data:any[]) =>{
         console.log(data);
         this.houses=data;
-        this.pages=new Array(data['totalPages']);
+        this.pagesHouses=new Array(data['totalPages']);
       }
       )
   }

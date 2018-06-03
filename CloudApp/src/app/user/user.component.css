@@ -70,4 +70,10 @@ ul, ol {
   padding: 8px 20px;
   background-color: transparent;
   position: relative;
+  left: 5%;
+}
+
+.list-groupSearch{
+  width: 80%;
+  margin-left: 6.5%;
 }
