@@ -16,7 +16,6 @@ import { UserResolver } from './user/user.resolver';
 import {HttpClientModule} from '@angular/common/http';
 
 
-
 @NgModule({
   declarations: [
     AppComponent,

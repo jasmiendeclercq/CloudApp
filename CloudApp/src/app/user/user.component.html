@@ -8,9 +8,9 @@
     <ul class="cat">
       <li>
         <ol class="type">
-          <li><a>Books</a></li>
-          <li><a>Characters</a></li>
-          <li><a>Houses</a></li>
+          <li><a (click)="showHide = !showHide" (click)="getAllBooks()">Books</a></li>
+          <li><a (click)="getAllCharacters()">Characters</a></li>
+          <li><a (click)="getAllHouses()">Houses</a></li>
         </ol>
       </li>
     </ul>
@@ -25,14 +25,14 @@
         <input type="text" (keyup)="onNameKeyUp($event)" class="form-control" placeholder="Name Character">
       </div>
       <div class="col">
-        <button type="button" (click)="getCharacters()" class="log_out">Search</button>
+        <button type="button"(click)="showHideSearch = !showHideSearch" (click)="getCharacters()" class="log_out">Search</button>
       </div>
     </div>
 </div>
 
 <br>
 
-<ul *ngIf="found" class="list-group">
+<ul *ngIf="showHideSearch" class="list-group">
     <li class="list-group-item">Name: {{name}}</li>
     <li class="list-group-item">Gender: {{gender}}</li>
     <li class="list-group-item">Culture: {{culture}}</li>
@@ -44,7 +44,48 @@
     <li class="list-group-item">Played by: {{playedBy}}</li>
   </ul>
 
+ <div *ngIf="showHide" class="container">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title">{{resourse}}</h4>
+            <table class="table table-stripped">
+                <tbody>
+                    <tr *ngFor="let book of books">
+                        <td>{{book.name}}</td>
+                        <td>{{book.authors}}</td>
+                        <td>{{book.released}}</td>
+                        <td>{{book.numberOfPages}}</td>
+                        <td>{{book.mediaType}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+ </div>
 
-  <button type="submit" class="log_out" (click)="logout()" >Log out</button>
+
+
+
+
+ <!--  <ul *ngIf="pager.pages && pager.pages.length" class="pagination">
+     <li [ngClass]="{disabled:pager.currentPage === 1}">
+         <a (click)="setPage(1)">First</a>
+     </li>
+     <li [ngClass]="{disabled:pager.currentPage === 1}">
+         <a (click)="setPage(pager.currentPage - 1)">Previous</a>
+     </li>
+     <li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
+         <a (click)="setPage(page)">{{page}}</a>
+     </li>
+     <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+         <a (click)="setPage(pager.currentPage + 1)">Next</a>
+     </li>
+     <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
+         <a (click)="setPage(pager.totalPages)">Last</a>
+     </li>
+ </ul> -->
+
+  <a type="submit" class="log_out2" (click)="logout()" >Log out</a>
+
 
   

@@ -53,13 +53,19 @@ ul, ol {
   list-style: none;
 }
 
-.log_outt:hover, .log_out:focus, .log_out.focus, .log_out:active, .log_out.active {
+.log_out:hover, .log_out:focus, .log_out.focus, .log_out:active, .log_out.active {
 	color: #fff;
 	background-color: #121d1f;
 	border-color: #121d1f;
 }
 .log_out{
   border: 1px solid #777;
+  color: #555;
+  padding: 8px 20px;
+  background-color: transparent;
+  position: relative;
+}
+.log_out2{
   color: #555;
   padding: 8px 20px;
   background-color: transparent;
