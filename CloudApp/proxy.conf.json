@@ -1,0 +1,8 @@
+{
+    "/api/*": {
+    "target": "https://anapioficeandfire.com",
+    "secure": false,
+    "logLevel": "debug",
+    "changeOrigin": true
+  }
+}

@@ -11,9 +11,14 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
   templateUrl: './user.component.html',
   styleUrls: ['./user.component.css']
 })
+
 export class UserComponent implements OnInit {
 
   name:string='';
+  gender:string='';
+  titles:string[];
+  found:boolean;
+
   user: FirebaseUserModel = new FirebaseUserModel();
 
   constructor(
@@ -26,16 +31,32 @@ export class UserComponent implements OnInit {
 
   onNameKeyUp(event:any){
     this.name = event.target.value;
+    this.found=false;
+    console.log(this.name);
+    console.log(this.findAndReplace(this.name, " ", "+"));
+    this.name=(this.findAndReplace(this.name, " ", "+"));
   }
 
+  findAndReplace(string, target, replacement) {
+    var i = 0, length = string.length; 
+    for (i; i < length; i++) {
+      string = string.replace(target, replacement);  
+    }  
+    return string; 
+   }
+    
+   
   getCharacters(){
-    //problemen met cors zie website: https://github.com/Rob--W/cors-anywhere
-    var cors_api_url = 'https://cors-anywhere.herokuapp.com/';
-    this._http.get("https://cors-anywhere.herokuapp.com/https://anapioficeandfire.com/api/characters/583")
-    //this._http.get("https://anapioficeandfire.com/api/characters/?name=${this.name}")
+    this._http.get("/api/characters/?name=Jon+Snow")
+   // this._http.get("https://cors-anywhere.herokuapp.com/https://anapioficeandfire.com/api/characters/?name=${this.name}")
+   // this._http.get('https://cors-anywhere.herokuapp.com/https://anapioficeandfire.com/api/characters/?culture=valyrian')
     .subscribe(
       (data:any[]) =>{
         console.log(data);
+        if(data.length){
+          this.name=data[1].name;
+          this.found=true;
+        }
       }
     )
 
