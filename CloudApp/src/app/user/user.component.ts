@@ -13,10 +13,16 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 })
 
 export class UserComponent implements OnInit {
-
+  readonly ROOT_URL = '/api';
   name:string='';
   gender:string='';
+  culture:string='';
+  born:string='';
+  died:string='';
   titles:string[];
+  aliases:string[];
+  tvSeries:string[];
+  playedBy:string[];
   found:boolean;
 
   user: FirebaseUserModel = new FirebaseUserModel();
@@ -47,14 +53,20 @@ export class UserComponent implements OnInit {
     
    
   getCharacters(){
-    this._http.get("/api/characters/?name=Jon+Snow")
-   // this._http.get("https://cors-anywhere.herokuapp.com/https://anapioficeandfire.com/api/characters/?name=${this.name}")
-   // this._http.get('https://cors-anywhere.herokuapp.com/https://anapioficeandfire.com/api/characters/?culture=valyrian')
+    this._http.get(this.ROOT_URL+'/characters/', {params: {name: this.name}})
     .subscribe(
       (data:any[]) =>{
         console.log(data);
-        if(data.length){
-          this.name=data[1].name;
+        if(data.length){  
+          this.name=data[0].name;
+          this.gender=data[0].gender;
+          this.culture=data[0].culture;
+          this.born=data[0].born;
+          this.died=data[0].died;
+          this.titles=data[0].titles;
+          this.aliases=data[0].aliases;
+          this.tvSeries=data[0].tvSeries;
+          this.playedBy=data[0].playedBy;
           this.found=true;
         }
       }

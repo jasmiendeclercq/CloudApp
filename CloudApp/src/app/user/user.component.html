@@ -1,18 +1,50 @@
 
-<button type="button" (click)="logout()" class="btn btn-outline-primary">Logout</button>
+ <div class= "container">
+  <div class="section-title text-center center">
+    <h2>Game of Thrones</h2>
+    <hr>
+  </div>
+  <div class="categories">
+    <ul class="cat">
+      <li>
+        <ol class="type">
+          <li><a>Books</a></li>
+          <li><a>Characters</a></li>
+          <li><a>Houses</a></li>
+        </ol>
+      </li>
+    </ul>
+    <div class="clearfix"></div>
+  </div>
+</div> 
 
-<div class="col-7">
-    <input type="text" (keyup)="onNameKeyUp($event)" class="form-control" placeholder="Character">
+
+<div class="container">
+    <div class="row">
+      <div class="col">
+        <input type="text" (keyup)="onNameKeyUp($event)" class="form-control" placeholder="Name Character">
+      </div>
+      <div class="col">
+        <button type="button" (click)="getCharacters()" class="log_out">Search</button>
+      </div>
+    </div>
 </div>
-<button type="button" (click)="getCharacters()" class="btn btn-outline-primary">Get characters</button>
+
 <br>
-<div *ngIf="found">
 
-</div>
-<ul class="list-group">
-    <li class="list-group-item">Cras justo odio</li>
-    <li class="list-group-item">Dapibus ac facilisis in</li>
-    <li class="list-group-item">Morbi leo risus</li>
-    <li class="list-group-item">Porta ac consectetur ac</li>
-    <li class="list-group-item">Vestibulum at eros</li>
+<ul *ngIf="found" class="list-group">
+    <li class="list-group-item">Name: {{name}}</li>
+    <li class="list-group-item">Gender: {{gender}}</li>
+    <li class="list-group-item">Culture: {{culture}}</li>
+    <li class="list-group-item">Born: {{born}}</li>
+    <li class="list-group-item">Died: {{died}}</li>
+    <li class="list-group-item">Titles: {{titles}}</li>
+    <li class="list-group-item">Aliases: {{aliases}}</li>
+    <li class="list-group-item">Tv Series: {{tvSeries}}</li>
+    <li class="list-group-item">Played by: {{playedBy}}</li>
   </ul>
+
+
+  <button type="submit" class="log_out" (click)="logout()" >Log out</button>
+
+  
