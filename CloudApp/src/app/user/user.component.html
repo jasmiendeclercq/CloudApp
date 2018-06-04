@@ -1,22 +1,25 @@
+<header class="full-height">
+        <!-- Intro Section -->
+        <div class="view hm-black-light jarallax" data-jarallax='{"speed": 0.2}' style="background-image: url(https://mdbootstrap.com/img/Photos/Others/img%20%2848%29.jpg);">
+            <div class="full-bg-img">
+                <div class="container flex-center">
+                    <div class="row pt-5 mt-3">
+                        <div class="col-md-12">
+                            <div class="text-center">
+                                <h1 class="h1-reponsive white-text text-uppercase font-weight-bold mb-3 wow fadeInDown" data-wow-delay="0.3s"><strong>Game of Thrones</strong></h1>
+                                <hr class="hr-light mt-4 wow fadeInDown" data-wow-delay="0.4s">
+                                <h5 class="text-uppercase mb-5 white-text wow fadeInDown" data-wow-delay="0.4s"><strong>Cloud Application</strong></h5>
+                                <a class="btn btn-outline-white wow fadeInDown" data-wow-delay="0.4s" (click)="showHide = !showHide" (click)="getAllBooks()">Books</a> 
+                                <a class="btn btn-outline-white wow fadeInDown" data-wow-delay="0.4s" (click)="showHideChar = !showHideChar" (click)="getAllCharacters()">Characters</a>
+                                <a class="btn btn-outline-white wow fadeInDown" data-wow-delay="0.4s" (click)="showHideHouses = !showHideHouses"(click)="getAllHouses()">Houses</a>  
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>    
+      </header> 
 
- <div class= "container">
-  <div class="section-title text-center center">
-    <h2>Game of Thrones</h2>
-    <hr>
-  </div>
-  <div class="categories">
-    <ul class="cat">
-      <li>
-        <ol class="type">
-          <li><a (click)="showHide = !showHide" (click)="getAllBooks()">Books</a></li>
-          <li><a (click)="showHideChar = !showHideChar" (click)="getAllCharacters()">Characters</a></li>
-          <li><a (click)="showHideHouses = !showHideHouses"(click)="getAllHouses()">Houses</a></li>
-        </ol>
-      </li>
-    </ul>
-    <div class="clearfix"></div>
-  </div>
-</div> 
 <div class="container">
     <div class="row">
       <div class="col">
@@ -25,6 +28,12 @@
       <div class="col">
         <button type="button"(click)="showHideSearch = !showHideSearch" (click)="getCharacters()" class="log_out">Search</button>
       </div>
+      <div class="col">
+            <input type="text" (keyup)="onIDKeyUp($event)" class="form-control" placeholder="ID Character">
+        </div>
+        <div class="col">
+            <button type="button"(click)="showHideSearchID = !showHideSearchID" (click)="getCharactersByID()" class="log_out">Search</button>
+        </div>
     </div>
 </div>
 
@@ -42,7 +51,20 @@
     <li class="list-group-item">Played by: {{playedBy}}</li>
 </ul>
 
- <div *ngIf="showHide" class="container">
+<ul *ngIf="showHideSearchID" class="list-groupSearch">
+        <li class="list-group-item">Name: {{IDname}}</li>
+        <li class="list-group-item">Gender: {{IDgender}}</li>
+        <li class="list-group-item">Culture: {{IDculture}}</li>
+        <li class="list-group-item">Born: {{IDborn}}</li>
+        <li class="list-group-item">Died: {{IDdied}}</li>
+        <li class="list-group-item">Titles: {{IDtitles}}</li>
+        <li class="list-group-item">Aliases: {{IDaliases}}</li>
+        <li class="list-group-item">Tv Series: {{IDtvSeries}}</li>
+        <li class="list-group-item">Played by: {{IDplayedBy}}</li>
+    </ul>
+
+
+<div *ngIf="showHide" class="container">
     <div class="card">
         <div class="card-body">
             <h4 class="card-title">Books</h4>

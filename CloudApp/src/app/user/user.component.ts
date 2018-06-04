@@ -26,9 +26,22 @@ export class UserComponent implements OnInit {
   aliases:string[];
   tvSeries:string[];
   playedBy:string[];
+
+  IDdata:any={};
+  IDname:string='';
+  IDgender:string='';
+  IDculture:string='';
+  IDborn:string='';
+  IDdied:string='';
+  IDtitles:string[];
+  IDaliases:string[];
+  IDtvSeries:string[];
+  IDplayedBy:string[];
+
+
   found:boolean;
   showHide:boolean;
-
+  ID:string='';
   user: FirebaseUserModel = new FirebaseUserModel();
   books:Array<any>;
   characters:Array<any>;
@@ -50,6 +63,7 @@ export class UserComponent implements OnInit {
     private _http: HttpClient,
     private router: Router,
   ) {
+    this.getCharactersByID();
     this.route.params.subscribe(params =>{
       console.log(params);
     })
@@ -79,6 +93,34 @@ export class UserComponent implements OnInit {
     this.name = event.target.value;
     this.found=false;
     console.log(this.name);
+  }
+
+  onIDKeyUp(event:any){
+    this.ID = event.target.value;
+    this.found=false;
+    console.log(this.ID);
+  }
+
+  getCharactersByID(){
+    this._http.get(this.ROOT_URL+'/characters/'+this.ID).subscribe(
+      data =>{
+        this.IDdata=data;
+        var res = [];
+        for (var x in data){
+        data.hasOwnProperty(x) && res.push(data[x])
+        }
+        console.log(res);
+        this.IDname=res[1];
+        this.IDgender=res[2];
+        this.IDculture=res[3];
+        this.IDborn=res[4];
+        this.IDdied=res[5];
+        this.IDtitles=res[6];
+        this.IDaliases=res[7];
+        this.IDtvSeries=res[14];
+        this.IDplayedBy=res[15];
+      }
+    )
   }
  
   getCharacters(){

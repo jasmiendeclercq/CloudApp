@@ -4,8 +4,30 @@
 	-webkit-font-smoothing: antialiased !important;
 	color: #777;
 	width: 100% !important;
-	height: 100% !important;
+  height: 100% !important;
+ 
 }
+h1 {
+  letter-spacing: 8px;
+}
+h5 {
+  letter-spacing: 3px;
+}
+.hr-light {
+  border-top: 3px solid #fff;
+  width: 80px;
+}
+@media (max-width: 740px) {
+  .full-height,
+  .full-height body,
+  .full-height header,
+  .full-height header .view {
+      height: 700px; 
+  } 
+}
+
+
+
 ol.type li {
   display: inline-block;
   margin-left: 20px;
@@ -33,6 +55,7 @@ h2 {
   padding-left: 15px;
   margin-right: auto;
   margin-left: auto;
+  margin-top: 20px;
 }
 hr {
   height: 1px;
@@ -76,4 +99,24 @@ ul, ol {
 .list-groupSearch{
   width: 80%;
   margin-left: 6.5%;
+}
+header #header{
+  display: block;
+}
+
+#header .intro{
+    display: table;
+    width: 100%;
+    padding: 0;
+    text-align: center;
+    color: #333;
+    background-image: url(https://mdbootstrap.com/img/Photos/Others/img%20%2848%29.jpg) no-repeat center top;
+    background-color: #e5e5e5;
+    background-size: cover;
+}
+#header .intro .container{
+  padding-right: 15px;
+    padding-left: 15px;
+    margin-right: auto;
+    margin-left: auto;
 }
