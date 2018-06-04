@@ -33,12 +33,13 @@ export class UserComponent implements OnInit {
   books:Array<any>;
   characters:Array<any>;
   houses:Array<any>;
-  private pageBooks:number=0;
-  private pageChars:number=0;
-  private pageHouse:number=0;
+  private pageBooks:number=1;
+  private pageChars:number=1;
+  private pageHouse:number=1;
   pagesBooks:Array<number>;
   pagesChars:Array<number>;
   pagesHouses:Array<number>;
+  isDisabled:boolean;
 
 
   constructor(
@@ -61,6 +62,17 @@ export class UserComponent implements OnInit {
   setCharacterPageBack(){
     this.pageChars=this.pageChars-1;
     this.getAllCharacters(this.pageChars);
+  }
+  setHousesPageBack(){
+    if(this.pageHouse=0){
+      this.isDisabled=true;
+    }
+    this.pageHouse=this.pageHouse-1;
+    this.getAllHouses(this.pageHouse);
+  }
+  setHousesrPageFurther(){
+    this.pageHouse=this.pageHouse+1;
+    this.getAllHouses(this.pageHouse);
   }
 
   onNameKeyUp(event:any){

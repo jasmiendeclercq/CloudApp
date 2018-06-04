@@ -106,7 +106,8 @@
                     <hr>
                     <ul nav nav-pills>
                         <li class="nav-item" *ngFor="let p of pagesHouses; let i=index">
-                            <a class="nav-link-active" href="">{{i}}</a>
+                            <a class="nav-link-active"  ng-disabled="isDisabled" (click)="setHousesPageBack()">Vorige </a>
+                            <a class="nav-link-active"  (click)="setHousesrPageFurther()">Volgende </a>
                         </li>
                     </ul>
                 </div>
@@ -116,23 +117,6 @@
   <a type="submit" class="log_out2" (click)="logout()" >Log out</a>
 
   
- <!--  <ul *ngIf="pager.pages && pager.pages.length" class="pagination">
-     <li [ngClass]="{disabled:pager.currentPage === 1}">
-         <a (click)="setPage(1)">First</a>
-     </li>
-     <li [ngClass]="{disabled:pager.currentPage === 1}">
-         <a (click)="setPage(pager.currentPage - 1)">Previous</a>
-     </li>
-     <li *ngFor="let page of pager.pages" [ngClass]="{active:pager.currentPage === page}">
-         <a (click)="setPage(page)">{{page}}</a>
-     </li>
-     <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
-         <a (click)="setPage(pager.currentPage + 1)">Next</a>
-     </li>
-     <li [ngClass]="{disabled:pager.currentPage === pager.totalPages}">
-         <a (click)="setPage(pager.totalPages)">Last</a>
-     </li>
- </ul> -->
 
 
   
