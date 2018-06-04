@@ -105,6 +105,7 @@ export class UserComponent implements OnInit {
     this._http.get(this.ROOT_URL+'/characters/'+this.ID).subscribe(
       data =>{
         this.IDdata=data;
+        //data in een andere array steken om dan de info er uit te halen
         var res = [];
         for (var x in data){
         data.hasOwnProperty(x) && res.push(data[x])

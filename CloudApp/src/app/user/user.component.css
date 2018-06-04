@@ -56,6 +56,7 @@ h2 {
   margin-right: auto;
   margin-left: auto;
   margin-top: 20px;
+  padding-top: 40px;
 }
 hr {
   height: 1px;
@@ -90,10 +91,9 @@ ul, ol {
 }
 .log_out2{
   color: #555;
-  padding: 8px 20px;
   background-color: transparent;
   position: relative;
-  left: 5%;
+  left: 7%;
 }
 
 .list-groupSearch{
